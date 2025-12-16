@@ -35,7 +35,7 @@ class Settings(BaseSettings):
     llm_temperature: float = 0.0
 
     # Retrieval Settings
-    retrieval_k: int = 4
+    retrieval_k: int = 6
 
     # Logging
     log_level: str = "INFO"
