@@ -143,3 +143,17 @@ class VectorStoreService:
             search_type="similarity",
             search_kwargs={"k": k},
         )
+
+
+    def health_check(self) -> bool:
+        """Check if vector store is healthy.
+
+        Returns:
+            True if healthy, False otherwise
+        """
+        try:
+            self.client.get_collections()
+            return True
+        except Exception as e:
+            logger.error(f"Vector store health check failed: {e}")
+            return False

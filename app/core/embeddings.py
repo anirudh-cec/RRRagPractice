@@ -28,6 +28,26 @@ def get_embeddings() -> OpenAIEmbeddings:
     logger.info("Embeddings model initialized successfully")
     return embeddings
 
+class EmbeddingService:
+    """Service for generating embeddings."""
+
+    def __init__(self):
+        """Initialize embedding service."""
+        settings = get_settings()
+        self.embeddings = get_embeddings()
+        self.model_name = settings.embedding_model
+
+    def embed_query(self, text: str) -> list[float]:
+        """Generate embedding for a single query.
+
+        Args:
+            text: Query text
+
+        Returns:
+            Embedding vector as list of floats
+        """
+        logger.debug(f"Generating embedding for query: {text[:50]}...")
+        return self.embeddings.embed_query(text)
 
 
 
